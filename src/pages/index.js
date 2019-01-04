@@ -1,14 +1,23 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { URL } from 'whatwg-url'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+class IndexPage extends React.Component {
+    state = {
+        url: ``
+    }
 
-const IndexPage = () => {
-    let u = new URL("http://example.com/foo.html");
-    u.search = "bar=baz";
-    return <h1>{u.toString()}</h1>;
+    componentDidMount() {
+        let u = new URL("http://example.com/foo.html");
+        u.search = "bar=baz";
+
+        this.setState({
+            url: u.toString()
+        })
+    }
+
+    render() {
+        return <h1>{this.state.url}</h1>
+    }
 }
 
 export default IndexPage
